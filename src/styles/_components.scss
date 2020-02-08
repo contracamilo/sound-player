@@ -1,0 +1,17 @@
+//atoms
+@import '../components/atoms/AlbumImage/album-image';
+@import '../components/atoms/Button/button';
+@import '../components/atoms/Time/time';
+@import '../components/atoms/Title/title';
+@import '../components/atoms/Loader/loader';
+
+//molecules
+@import '../components/molecules/Controls/controls';
+@import '../components/molecules/Info/info';
+@import '../components/molecules/ProgressBar/progress-bar';
+
+//organisms
+@import '../components/organisms/PlayerWidget/player-widget';
+
+//templates
+@import '../components/templates/Player/player';
