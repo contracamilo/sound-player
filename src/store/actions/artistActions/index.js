@@ -1,28 +1,28 @@
-import { useEffect } from 'react';
 import { GET_SONGS, ERROR, LOADING } from '../../types/ActionTypes';
 
-const url = 'http://www.mocky.io/v2/5e3f3e4a3300005e008b0b2c';
+export const getArtistData = () => async dispatch => {
+  const url = 'http://www.mocky.io/v2/5e3fa53d3300004c00b04c0e';
 
-export const getArtistData = dispatch => {
-  const abortController = new AbortController();
+  dispatch({
+    type: LOADING,
+  });
 
-  useEffect(() => {
-    dispatch({ type: LOADING });
-
-    const fetchArtist = async () => {
-      const call = await fetch(url, { signal: abortController.signal });
-      const response = await call.json();
-      try {
-        dispatch({ type: GET_SONGS, payload: response });
-      } catch (error) {
-        dispatch({ type: ERROR, payload: error });
-      }
-    };
-
-    fetchArtist();
-
-    return () => {
-      abortController.abort();
-    };
-  }, [url]);
+  const call = await fetch(url, {
+    method: 'GET',
+    redirect: 'follow',
+  });
+  const response = await call.json();
+  const values = Object.values(response);
+  const key = Object.keys(values);
+  try {
+    dispatch({
+      type: GET_SONGS,
+      payload: values[key],
+    });
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error,
+    });
+  }
 };

@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Loader from '../../atoms/Loader';
+import Controls from '../../molecules/Controls';
+import AlbumImage from '../../atoms/AlbumImage';
+import { setCurrentSong } from '../../../store/actions/controlActions';
 
-const PlayerWidget = ({ music }) => {
-  const { loading, data = [] } = music.artists;
+class PlayerWidget extends Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+  componentDidUpdate(prevProps) {
+    const { data } = this.props.artists;
+    const { artists, setCurrentSong } = this.props;
+    const firtsSong = data[0];
+    if (artists.data !== prevProps.artists.data) {
+      setCurrentSong(firtsSong);
+    }
+  }
 
-  const artist = Object.values(data);
-  const key = Object.keys(artist);
+  render() {
+    const { currentSong } = this.props.controls;
+    return (
+      <div className={`player-widget-main player-widget-main--${'!loading' && 'loaded'}`}>
+        <AlbumImage src={currentSong.cover} alt={currentSong.artist} />
+        <Controls element={this.myRef.current} />
+        <audio ref={this.myRef} src={currentSong.ulr}>
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
+      </div>
+    );
+  }
+}
 
-  return (
-    <div className={`player-widget-main player-widget-main--${!loading && 'loaded'}`}>
-      {artist.length !== 0 && artist[key].map((item, i) => <li key={i}>{item.artist}</li>)}
-    </div>
-  );
-};
+const mapStateToProps = reducer => ({
+  ...reducer,
+});
 
-export default PlayerWidget;
+export default connect(mapStateToProps, { setCurrentSong })(PlayerWidget);

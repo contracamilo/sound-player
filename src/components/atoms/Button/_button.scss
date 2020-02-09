@@ -1,0 +1,21 @@
+button {
+  background-color: transparent;
+  border: 0;
+  width: 4.5rem;
+  margin-right: 1rem;
+  height: 80%;
+  cursor: pointer;
+  svg {
+    fill: $player-deep-color;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  &:hover {
+    background-color: $player-blue-color;
+    @include transition(background-color 400ms linear);
+    svg {
+      fill: $white;
+      @include transition(background-color 400ms linear);
+    }
+  }
+}

@@ -1,21 +1,29 @@
-import React, { useReducer } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PlayerWidget from '../../organisms/PlayerWidget/PlayerWidget';
-import rootReducer from '../../../store/reducers';
+import AudioWidget from '../../organisms/InfoWidget';
 import { getArtistData } from '../../../store/actions/artistActions';
-import { INITIAL_STATE } from '../../../store/reducers/artistReducer';
 
-const Player = () => {
-  const [state, dispatch] = useReducer(rootReducer, { artists: INITIAL_STATE });
-  getArtistData(dispatch);
-
-  return (
-    <div className="main-player">
-      <div className="main-player__bg"></div>
-      <div className="main-player__widget">
-        <PlayerWidget music={state} />
+class Player extends Component {
+  componentDidMount() {
+    this.props.getArtistData();
+  }
+  render() {
+    const { data } = this.props.artists;
+    return (
+      <div className="main-player">
+        <div className="main-player__bg"></div>
+        <div className="main-player__widget">
+          <AudioWidget />
+          <PlayerWidget />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default Player;
+const mapStateToProps = reducer => ({
+  ...reducer,
+});
+
+export default connect(mapStateToProps, { getArtistData })(Player);

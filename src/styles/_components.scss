@@ -4,6 +4,7 @@
 @import '../components/atoms/Time/time';
 @import '../components/atoms/Title/title';
 @import '../components/atoms/Loader/loader';
+@import '../components/atoms/ProgressBar/progress-bar';
 
 //molecules
 @import '../components/molecules/Controls/controls';
@@ -12,6 +13,7 @@
 
 //organisms
 @import '../components/organisms/PlayerWidget/player-widget';
+@import '../components/organisms/InfoWidget/audio-widget';
 
 //templates
 @import '../components/templates/Player/player';

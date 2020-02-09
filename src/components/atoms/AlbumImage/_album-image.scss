@@ -1,0 +1,27 @@
+.player-cover {
+  width: 115px;
+  height: 115px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: -3rem 1.5rem 0;
+  transform: rotateZ(0);
+  border: 8px solid $white;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    top: calc(50% - 10%);
+    left: calc(50% - 10%);
+    z-index: 2;
+    border: 2px solid $white;
+    background-color: $player-light-gray;
+    border-radius: 50%;
+  }
+  &__cd {
+    img {
+      width: 100%;
+    }
+  }
+}
