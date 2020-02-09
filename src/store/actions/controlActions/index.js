@@ -1,4 +1,4 @@
-import { PLAY, ERROR, PAUSE, SET_REF, SET_CURRENT_SONG } from '../../types/ActionTypes';
+import { PLAY, ERROR, PAUSE, SET_NEW_PERCENTAGE, SET_CURRENT_SONG } from '../../types/ActionTypes';
 
 export const playSong = (currentTime, duration, percentage) => dispatch => {
   try {
@@ -17,7 +17,7 @@ export const playSong = (currentTime, duration, percentage) => dispatch => {
 
 export const pauseSong = () => dispatch => {
   try {
-    dispatch({ type: PAUSE });
+    dispatch({ type: PAUSE, payload: true });
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }
@@ -37,10 +37,13 @@ export const setCurrentSong = (song, ref) => dispatch => {
   }
 };
 
-export const setRef = (element, dispatch) => {
+export const setBarPosition = value => dispatch => {
+  console.log(value);
   try {
-    element.pause();
-    dispatch({ type: SET_REF, payload: element });
+    dispatch({
+      type: SET_NEW_PERCENTAGE,
+      payload: value,
+    });
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }

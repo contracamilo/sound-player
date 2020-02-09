@@ -5,15 +5,16 @@ import {
   FORWARD,
   BUFFERING,
   ERROR,
-  SET_REF,
+  SET_NEW_PERCENTAGE,
   SET_CURRENT_SONG,
 } from '../../types/ActionTypes';
 
 export const INITIAL_STATE = {
   loading: '',
   error: '',
-  playing: '',
-  paused: '',
+  playing: false,
+  paused: true,
+  pausedSong: true,
   currentTime: '',
   duration: '',
   percentage: '',
@@ -29,12 +30,12 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SET_REF: {
+    case SET_NEW_PERCENTAGE: {
       return {
         ...state,
         loading: false,
         error: '',
-        ref: action.payload,
+        percentage: action.payload,
       };
     }
     case PLAY: {
@@ -44,7 +45,7 @@ export default (state = INITIAL_STATE, action) => {
         loading: false,
         error: '',
         playing: true,
-        paused: false,
+        pausedSong: false,
         currentTime,
         duration,
         percentage,
@@ -57,7 +58,8 @@ export default (state = INITIAL_STATE, action) => {
         loading: false,
         error: '',
         playing: false,
-        paused: true,
+        paused: action.payload,
+        pausedSong: action.payload,
       };
     }
 

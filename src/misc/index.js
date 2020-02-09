@@ -31,16 +31,19 @@ export const getPercentage = (current, total) => (current / total) * 100;
 
 /**
  * Function which takes the percentage of the bar at the point that you clicked
- * @function el {DOM element} to get the size information
- * @param value  { number }
+ * @function getWidth {DOM element} to get the size information
+ * @param el { DOM element }
+ * @param callback  { function } callback that runs when the event was listened
  * @returns  { number } Percentage at the clicked point of the element.
  */
 
-export const getWidth = el => {
+export const getWidth = (el, callback) => {
   const bar = el.getBoundingClientRect();
   el.addEventListener('click', e => {
+    e.preventDefault();
     const result = ((e.clientX - bar.left) / bar.width) * 100;
-    console.log(result);
-    return result;
+    if (callback !== undefined) {
+      callback(result);
+    }
   });
 };

@@ -20,10 +20,10 @@ class PlayerWidget extends Component {
   }
 
   render() {
-    const { currentSong } = this.props.controls;
+    const { currentSong, playing } = this.props.controls;
     return (
       <div className={`player-widget-main player-widget-main--${'!loading' && 'loaded'}`}>
-        <AlbumImage src={currentSong.cover} alt={currentSong.artist} />
+        <AlbumImage src={currentSong.cover} alt={currentSong.artist} playing={playing} />
         <Controls element={this.myRef.current} />
         <audio ref={this.myRef} src={currentSong.ulr}>
           Your browser does not support the

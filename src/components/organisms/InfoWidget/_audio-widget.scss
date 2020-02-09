@@ -1,11 +1,17 @@
 .player-audiowidget {
+  @include transition(height 0.3s ease-in);
   width: 97%;
   margin: 0 auto;
-  height: 100px;
+  height: 0px;
+  overflow: hidden;
   background-color: $player-deep-color;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  &--open {
+    height: 100px;
+    @include transition(height 0.3s ease-in);
+  }
   &__info {
     width: 83%;
     padding: 0 2rem 0 0;
@@ -19,5 +25,6 @@
   &__progress {
     z-index: 1;
     pointer-events: none;
+    pointer-events: fill;
   }
 }

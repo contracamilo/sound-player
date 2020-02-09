@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Title from '../../atoms/Title';
-import { setCurrentSong } from '../../../store/actions/controlActions';
+import { setCurrentSong, setBarPosition } from '../../../store/actions/controlActions';
 import { getWidth } from '../../../misc';
 import ProgressBar from '../../atoms/ProgressBar';
 import Time from '../../atoms/Time';
@@ -21,14 +21,16 @@ class AudioWidget extends Component {
     }
   }
 
-  OnBarClick() {
-    const value = getWidth(this.progressRef.current);
+  OnBarClick(ref) {
+    getWidth(ref, value => this.props.setBarPosition(value));
   }
 
   render() {
-    const { currentSong, currentTime, percentage, duration } = this.props.controls;
+    const { currentSong, currentTime, percentage, duration, playing } = this.props.controls;
+    const rf = document.getElementById('progressId');
+    console.log(playing);
     return (
-      <div className="player-audiowidget">
+      <div className={`player-audiowidget player-audiowidget--${playing ? 'open' : ''}`}>
         <div className="player-audiowidget__info">
           <div className="player-audiowidget__title">
             <Title album={currentSong.album} artist={currentSong.artist} song={currentSong.name} />
@@ -37,13 +39,12 @@ class AudioWidget extends Component {
             <Time time={currentTime} />
             <Time time={duration} />
           </div>
-          <div ref={this.progressRef} className="player-audiowidget__progress">
+          <div className="player-audiowidget__progress">
             <ProgressBar
-              element={this.progressRef.current}
               id={'progressId'}
               percentage={percentage}
               max={100}
-              action={() => this.OnBarClick()}
+              action={() => this.OnBarClick(rf)}
             />
           </div>
         </div>
@@ -56,4 +57,4 @@ const mapStateToProps = reducer => ({
   ...reducer,
 });
 
-export default connect(mapStateToProps, { setCurrentSong })(AudioWidget);
+export default connect(mapStateToProps, { setCurrentSong, setBarPosition })(AudioWidget);
