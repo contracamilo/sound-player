@@ -5,6 +5,9 @@
   overflow: hidden;
   position: relative;
   border-radius: 2px;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 2;
   progress {
     -webkit-appearance: none;
     appearance: none;

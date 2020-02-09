@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Loader from '../../atoms/Loader';
-import Controls from '../../molecules/Controls';
+import Controls from '../Controls';
 import AlbumImage from '../../atoms/AlbumImage';
 import { setCurrentSong } from '../../../store/actions/controlActions';
 

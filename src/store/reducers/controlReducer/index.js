@@ -14,6 +14,9 @@ export const INITIAL_STATE = {
   error: '',
   playing: '',
   paused: '',
+  currentTime: '',
+  duration: '',
+  percentage: '',
   currentSong: {
     ulr: '',
     cover: '',
@@ -35,13 +38,16 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
     case PLAY: {
+      const { currentTime, duration, percentage } = action.payload;
       return {
         ...state,
         loading: false,
         error: '',
         playing: true,
         paused: false,
-        currentSong: action.payload,
+        currentTime,
+        duration,
+        percentage,
       };
     }
 

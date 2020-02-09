@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ProgressBar = ({ percentage, max }) => {
+const ProgressBar = ({ id, percentage, max, action }) => {
   return (
-    <div className="player-progress">
-      <progress id="file" value={percentage} max={max}>
+    <div id={id} className="player-progress" onClick={() => action()}>
+      <progress id="file" value={percentage || 0} max={max}>
         <span>{percentage}</span>
       </progress>
     </div>

@@ -1,18 +1,22 @@
 import { PLAY, ERROR, PAUSE, SET_REF, SET_CURRENT_SONG } from '../../types/ActionTypes';
 
-export const playSong = (el, dispatch, x) => {
-  console.log(el);
+export const playSong = (currentTime, duration, percentage) => dispatch => {
   try {
-    el.play();
-    dispatch({ type: PLAY, payload: '' });
+    dispatch({
+      type: PLAY,
+      payload: {
+        currentTime,
+        duration,
+        percentage,
+      },
+    });
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }
 };
 
-export const pauseSong = (element, dispatch) => {
+export const pauseSong = () => dispatch => {
   try {
-    element.pause();
     dispatch({ type: PAUSE });
   } catch (error) {
     dispatch({ type: ERROR, payload: error });

@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Title from '../../atoms/Title';
 import { setCurrentSong } from '../../../store/actions/controlActions';
+import { getWidth } from '../../../misc';
 import ProgressBar from '../../atoms/ProgressBar';
 import Time from '../../atoms/Time';
 
 class AudioWidget extends Component {
+  constructor(props) {
+    super(props);
+    this.progressRef = React.createRef();
+  }
+
   componentDidUpdate(prevProps) {
     const { data } = this.props.artists;
     const { artists, setCurrentSong } = this.props;
@@ -15,8 +21,12 @@ class AudioWidget extends Component {
     }
   }
 
+  OnBarClick() {
+    const value = getWidth(this.progressRef.current);
+  }
+
   render() {
-    const { currentSong } = this.props.controls;
+    const { currentSong, currentTime, percentage, duration } = this.props.controls;
     return (
       <div className="player-audiowidget">
         <div className="player-audiowidget__info">
@@ -24,11 +34,17 @@ class AudioWidget extends Component {
             <Title album={currentSong.album} artist={currentSong.artist} song={currentSong.name} />
           </div>
           <div className="player-audiowidget__time-stamps">
-            <Time />
-            <Time />
+            <Time time={currentTime} />
+            <Time time={duration} />
           </div>
-          <div className="player-audiowidget__progress">
-            <ProgressBar percentage={32} max={100} />
+          <div ref={this.progressRef} className="player-audiowidget__progress">
+            <ProgressBar
+              element={this.progressRef.current}
+              id={'progressId'}
+              percentage={percentage}
+              max={100}
+              action={() => this.OnBarClick()}
+            />
           </div>
         </div>
       </div>

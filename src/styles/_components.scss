@@ -7,13 +7,12 @@
 @import '../components/atoms/ProgressBar/progress-bar';
 
 //molecules
-@import '../components/molecules/Controls/controls';
 @import '../components/molecules/Info/info';
-@import '../components/molecules/ProgressBar/progress-bar';
 
 //organisms
 @import '../components/organisms/PlayerWidget/player-widget';
 @import '../components/organisms/InfoWidget/audio-widget';
+@import '../components/organisms/Controls/controls';
 
 //templates
 @import '../components/templates/Player/player';

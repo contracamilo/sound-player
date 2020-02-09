@@ -1,12 +1,13 @@
 {
-  "name": "Livebox-player-demo",
+  "name": "playerdemo",
   "version": "1.0",
-  "description": "Everything you need to get started with a basic React application",
+  "description": "music player",
   "watch": true,
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-icons": "^3.9.0",
     "react-redux": "^5.1.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.3.0"
