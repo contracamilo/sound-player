@@ -9,13 +9,16 @@ import React from 'react';
  * @returns  {JSX.Element} - Rendered component
  */
 
-const AlbumImage = ({ src, alttext, playing }) => {
+const AlbumImage = ({ src, alttext, playing, buffering }) => {
   return (
-    <div className={`player-cover player-cover--${playing ? 'playing' : ''}`}>
-      <div className="player-cover__cd">
-        <img src={src} alt={alttext} />
+    <>
+      <div className={`player-cover player-cover--${playing && !buffering ? 'playing' : ''}`}>
+        <div className="player-cover__cd">
+          <img src={src} alt={alttext} />
+        </div>
       </div>
-    </div>
+      {buffering && <span className="player-cover__buff-text">...Buffering</span>}
+    </>
   );
 };
 

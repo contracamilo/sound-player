@@ -26,11 +26,16 @@ class PlayerWidget extends Component {
   }
 
   render() {
-    const { currentSong, playing } = this.props.controls;
+    const { currentSong, currentTime, playing } = this.props.controls;
     return (
       <div className={`player-widget-main player-widget-main--${'!loading' && 'loaded'}`}>
         {currentSong.cover ? (
-          <AlbumImage src={currentSong.cover} alt={currentSong.artist} playing={playing} />
+          <AlbumImage
+            buffering={currentTime === '00:00'}
+            src={currentSong.cover}
+            alt={currentSong.artist}
+            playing={playing}
+          />
         ) : (
           <>
             <Loader />
