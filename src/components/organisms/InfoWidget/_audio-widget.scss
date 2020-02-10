@@ -21,6 +21,10 @@
     justify-content: space-between;
     padding: 0.1rem 0;
     margin-top: 1rem;
+    i {
+      color: white;
+      font-size: $fs-mini;
+    }
   }
   &__progress {
     z-index: 1;

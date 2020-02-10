@@ -42,7 +42,7 @@ class AudioWidget extends Component {
           </div>
           <div className="player-audiowidget__time-stamps">
             <Time time={currentTime} />
-            <Time time={duration} />
+            {currentTime === '00:00' ? <i>Buffering...</i> : <Time time={duration} />}
           </div>
           <div className="player-audiowidget__progress">
             <ProgressBar

@@ -32,7 +32,10 @@ class PlayerWidget extends Component {
         {currentSong.cover ? (
           <AlbumImage src={currentSong.cover} alt={currentSong.artist} playing={playing} />
         ) : (
-          <Loader />
+          <>
+            <Loader />
+            <span>...Loading</span>
+          </>
         )}
         <Controls element={this.myRef.current} />
         {currentSong && this.setAudio(currentSong.ulr)}
