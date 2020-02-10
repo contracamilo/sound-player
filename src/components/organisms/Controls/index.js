@@ -7,6 +7,12 @@ import { playSong, pauseSong } from '../../../store/actions/controlActions';
 import { forwardSong, backwardSong } from '../../../store/actions/trackActions';
 import { setCurrentSong } from '../../../store/actions/controlActions';
 
+/**
+ * React Class that renders control buttons and manage state and logic on the player´s controls.
+ * @class Controls
+ * @returns  {JSX.Element} - Rendered component
+ */
+
 class Controls extends Component {
   constructor(props) {
     super(props);

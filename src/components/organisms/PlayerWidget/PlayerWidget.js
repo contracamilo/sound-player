@@ -5,6 +5,11 @@ import Controls from '../Controls';
 import AlbumImage from '../../atoms/AlbumImage';
 import { setCurrentSong } from '../../../store/actions/controlActions';
 
+/**
+ * React Class that renders the artist info elements and manage state and Logic for the music player.
+ * @class PlayerWidget
+ * @returns  {JSX.Element} - Rendered component
+ */
 class PlayerWidget extends Component {
   constructor(props) {
     super(props);

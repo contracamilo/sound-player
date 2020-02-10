@@ -17,6 +17,14 @@
   border: 8px solid $white;
   position: relative;
   animation-play-state: paused;
+  @include respond(tab-port) {
+    width: 12rem;
+    height: 12rem;
+    margin: 0rem 0rem 0;
+    position: absolute;
+    top: 3rem;
+    left: calc(50% - 6.5rem);
+  }
   &:before {
     content: '';
     position: absolute;
@@ -33,6 +41,9 @@
     margin: -6rem 1.5rem 0;
     border: 4px solid #ffffff;
     animation: rotateDisc 3s linear infinite;
+    @include respond(tab-port) {
+      margin: 0rem 0rem 0;
+    }
     &:before {
       top: calc(50% - 0.6rem);
       left: calc(50% - 0.6rem);

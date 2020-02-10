@@ -1,6 +1,6 @@
 @charset 'UTF-8';
-@import "_mixins";
-@import "_variables";
-@import "_normalize";
-@import "_base";
-@import "_components";
+@import './mixins';
+@import './variables';
+@import './normalize';
+@import './base';
+@import './components';

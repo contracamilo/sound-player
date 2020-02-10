@@ -1,7 +1,7 @@
 import { GET_SONGS, ERROR, LOADING } from '../../types/ActionTypes';
 
 export const getArtistData = () => async dispatch => {
-  const url = 'http://www.mocky.io/v2/5e40d9a62f00006d0058307c';
+  const url = 'https://5e40f4692001b900146b9dd1.mockapi.io/data/demo';
 
   dispatch({
     type: LOADING,
@@ -10,6 +10,7 @@ export const getArtistData = () => async dispatch => {
   const call = await fetch(url, {
     method: 'GET',
     redirect: 'follow',
+    'Access-Control-Allow-Origin': '*',
   });
   const response = await call.json();
   const values = Object.values(response);

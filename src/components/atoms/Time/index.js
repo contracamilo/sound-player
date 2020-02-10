@@ -3,6 +3,7 @@ import React from 'react';
 /**
  * Functional react component that renders time in minutes and seconds
  * @function Time
+ * @param time { string }
  * @returns  {JSX.Element} - Rendered component
  */
 

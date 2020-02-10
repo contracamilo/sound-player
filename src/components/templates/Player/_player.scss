@@ -24,6 +24,12 @@
   &__widget {
     width: 90%;
     height: 100px;
+    @include respond(big-desktop) {
+      width: 75%;
+    }
+    @include respond(tab-port) {
+      width: 98%;
+    }
   }
 }
 

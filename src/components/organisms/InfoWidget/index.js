@@ -6,6 +6,12 @@ import { getWidth } from '../../../misc';
 import ProgressBar from '../../atoms/ProgressBar';
 import Time from '../../atoms/Time';
 
+/**
+ * React Class that renders the info elements and manage state and Logic for the music player.
+ * @class AudioWidget
+ * @returns  {JSX.Element} - Rendered component
+ */
+
 class AudioWidget extends Component {
   constructor(props) {
     super(props);

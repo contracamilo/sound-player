@@ -5,6 +5,10 @@ button {
   margin-right: 1rem;
   height: 80%;
   cursor: pointer;
+  @include respond(tab-port) {
+    width: 6rem;
+    margin-right: 0.5rem;
+  }
   svg {
     fill: $player-deep-color;
     width: 1.8rem;
@@ -13,8 +17,14 @@ button {
   &:hover {
     background-color: $player-blue-color;
     @include transition(background-color 400ms linear);
+    @include respond(tab-port) {
+      background-color: transparent;
+    }
     svg {
       fill: $white;
+      @include respond(tab-port) {
+        fill: $player-deep-color;
+      }
       @include transition(background-color 400ms linear);
     }
   }
