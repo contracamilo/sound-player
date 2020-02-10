@@ -1,7 +1,7 @@
 import { GET_SONGS, ERROR, LOADING } from '../../types/ActionTypes';
 
 export const getArtistData = () => async dispatch => {
-  const url = 'http://www.mocky.io/v2/5e3fa53d3300004c00b04c0e';
+  const url = 'http://www.mocky.io/v2/5e40d9a62f00006d0058307c';
 
   dispatch({
     type: LOADING,

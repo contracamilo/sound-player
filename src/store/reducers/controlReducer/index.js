@@ -1,8 +1,6 @@
 import {
   PLAY,
   PAUSE,
-  BACKWARD,
-  FORWARD,
   BUFFERING,
   ERROR,
   SET_NEW_PERCENTAGE,
@@ -51,18 +49,6 @@ export default (state = INITIAL_STATE, action) => {
         percentage,
       };
     }
-
-    case PAUSE: {
-      return {
-        ...state,
-        loading: false,
-        error: '',
-        playing: false,
-        paused: action.payload,
-        pausedSong: action.payload,
-      };
-    }
-
     case SET_CURRENT_SONG: {
       const { artist, cover, song, album } = action.payload.song;
       return {
@@ -79,11 +65,22 @@ export default (state = INITIAL_STATE, action) => {
         },
       };
     }
+    case PAUSE: {
+      const { paused } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        playing: false,
+        paused: paused,
+        pausedSong: paused,
+      };
+    }
     case BUFFERING:
       return { ...state, loading: true, error: '' };
 
     case ERROR:
-      throw new Error();
+      throw { ...state, loading: false, error: action.payload };
 
     default:
       return state;

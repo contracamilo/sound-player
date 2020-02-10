@@ -1,27 +1,35 @@
-import { GET_SONGS, LOADING, ERROR } from '../../types/ActionTypes';
+import { FORWARD, BACKWARD, LOADING, ERROR } from '../../types/ActionTypes';
 
 export const INITIAL_STATE = {
   loading: '',
   error: '',
   data: [],
+  currentTrack: 0,
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_SONGS: {
+    case FORWARD: {
       return {
         ...state,
         loading: false,
         error: '',
-        quantity: action.payload.length - 1,
-        data: action.payload,
+        currentTrack: action.payload,
+      };
+    }
+    case BACKWARD: {
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        currentTrack: action.payload,
       };
     }
     case LOADING:
       return { ...state, loading: true, error: '' };
 
     case ERROR:
-      throw { ...state, loading: false, error: action.payload };
+      throw new Error();
 
     default:
       return state;

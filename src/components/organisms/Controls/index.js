@@ -4,10 +4,14 @@ import { Button } from '../../atoms/Button';
 import { FaPlay, FaBackward, FaForward, FaPause } from 'react-icons/fa';
 import { formatTime, getPercentage } from '../../../misc/index';
 import { playSong, pauseSong } from '../../../store/actions/controlActions';
+import { forwardSong, backwardSong } from '../../../store/actions/trackActions';
+import { setCurrentSong } from '../../../store/actions/controlActions';
 
 class Controls extends Component {
   constructor(props) {
     super(props);
+
+    this.onPlay = this.onPlay.bind(this);
   }
 
   onPlay() {
@@ -26,19 +30,37 @@ class Controls extends Component {
     }
   }
 
-  async onPause() {
+  componentDidUpdate(prevProps) {
+    const { currentTrack } = this.props.track;
+    const { data } = this.props.artists;
+    if (currentTrack !== prevProps.track.currentTrack) {
+      this.props.setCurrentSong(data[currentTrack]);
+      setTimeout(() => {
+        this.onPlay();
+      }, 50);
+    }
+  }
+
+  onPause() {
     const { element, pauseSong } = this.props;
-    await element.pause();
+    element.pause();
     setTimeout(() => {
       pauseSong();
-    }, 100);
+    }, 50);
   }
 
   render() {
     const { playing } = this.props.controls;
+    const { forwardSong, backwardSong } = this.props;
+    const { currentTrack } = this.props.track;
+    const { quantity } = this.props.artists;
     return (
       <div className="player-controls">
-        <Button aria="Backward">
+        <Button
+          aria="Backward"
+          disabled={currentTrack === 0}
+          action={() => backwardSong(currentTrack, 0)}
+        >
           <FaBackward />
         </Button>
         {playing ? (
@@ -50,7 +72,7 @@ class Controls extends Component {
             <FaPlay />
           </Button>
         )}
-        <Button aria="Forward">
+        <Button aria="Forward" action={() => forwardSong(currentTrack, quantity)}>
           <FaForward />
         </Button>
       </div>
@@ -62,4 +84,10 @@ const mapStateToProps = reducer => ({
   ...reducer,
 });
 
-export default connect(mapStateToProps, { playSong, pauseSong })(Controls);
+export default connect(mapStateToProps, {
+  playSong,
+  pauseSong,
+  forwardSong,
+  backwardSong,
+  setCurrentSong,
+})(Controls);

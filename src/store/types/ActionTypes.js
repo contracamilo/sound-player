@@ -5,7 +5,7 @@ export const ERROR = 'ERROR';
 //control
 
 export const PLAY = 'PLAY';
-export const PAUSE = 'BACKWARD';
+export const PAUSE = 'PAUSE';
 export const BACKWARD = 'BACKWARD';
 export const FORWARD = 'FORWARD';
 export const BUFFERING = 'BUFFERING';

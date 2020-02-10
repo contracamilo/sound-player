@@ -28,7 +28,6 @@ class AudioWidget extends Component {
   render() {
     const { currentSong, currentTime, percentage, duration, playing } = this.props.controls;
     const rf = document.getElementById('progressId');
-    console.log(playing);
     return (
       <div className={`player-audiowidget player-audiowidget--${playing ? 'open' : ''}`}>
         <div className="player-audiowidget__info">
@@ -42,7 +41,7 @@ class AudioWidget extends Component {
           <div className="player-audiowidget__progress">
             <ProgressBar
               id={'progressId'}
-              percentage={percentage}
+              percentage={`${percentage}`}
               max={100}
               action={() => this.OnBarClick(rf)}
             />

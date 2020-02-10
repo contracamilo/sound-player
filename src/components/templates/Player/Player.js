@@ -9,7 +9,6 @@ class Player extends Component {
     this.props.getArtistData();
   }
   render() {
-    const { data } = this.props.artists;
     return (
       <div className="main-player">
         <div className="main-player__bg"></div>

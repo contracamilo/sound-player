@@ -1,44 +1,29 @@
-Welcome to React Front-End Challenge
+# Sound Player Demo by Camilo Rivera.
 
-This challenge serves to evaluate your level of proficiency in React and your capacity to solve a day-to-day problem.
+React Sound Player. ==> [Original](https://codepen.io/felipevega/pen/ZqqBxJ)
 
-In this example you will find a working HTML5 sound player that has been implemented using HTML / CSS3 / jQuery. Your job is to re-implement
-it using React.
+## Prerequisites
 
-Take a look at the sound player:
+Things you need to have installed in your machine.
 
-https://codepen.io/felipevega/pen/ZqqBxJ
+```
+Node >= v8.12.0
+```
 
-TODO
+We use yarn instead npm, so we recommend installing yarn because is faster and we can avoid differences between those packages.
 
-1.Implement the same sound player using React. Try to preserve as much as possible the animations and interactions from the original sound
-player.
+```
+Yarn >= v1.3.2
+```
 
-2.Replace the hardcoded values (albums, track anmes, track urls) by a request to a server using fetch or react-refetch. Tip: To save you
-some time, use a fake JSON service (https://fakejson.com/)
+## Stack
 
-3.Make the components look great with CSS (BONUS: Show us your skills using flexbox).
+- Webpack
+- React, Redux, Sass
 
-KICK OFF
+## Scripts
 
-You just need to clone this repo, create a React app and start working on it.
-
-npx create-react-app react-sound-player
-
-cd react-sound-player
-
-npm start
-
-For further information about how to create a React app please visit Create React app.
-
-TUTORIALS
-
-·Create React App.
-
-·ES2015 Tutorial
-
-·What The Flexbox
-
-WHEN DONE
-
-After you've finish, just send us an email letting us know that you're ready to demo it and we'll take it from there.
+- `yarn install` to install all the dependencies
+- `yarn develop` open the dev environment in the port 8080
+- `yarn build` package for production
+- `yarn lint` Run the code linter

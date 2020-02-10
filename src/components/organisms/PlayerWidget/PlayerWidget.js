@@ -10,25 +10,27 @@ class PlayerWidget extends Component {
     super(props);
     this.myRef = React.createRef();
   }
-  componentDidUpdate(prevProps) {
-    const { data } = this.props.artists;
-    const { artists, setCurrentSong } = this.props;
-    const firtsSong = data[0];
-    if (artists.data !== prevProps.artists.data) {
-      setCurrentSong(firtsSong);
-    }
+
+  setAudio(url) {
+    return (
+      <audio ref={this.myRef} src={url}>
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+    );
   }
 
   render() {
     const { currentSong, playing } = this.props.controls;
     return (
       <div className={`player-widget-main player-widget-main--${'!loading' && 'loaded'}`}>
-        <AlbumImage src={currentSong.cover} alt={currentSong.artist} playing={playing} />
+        {currentSong.cover ? (
+          <AlbumImage src={currentSong.cover} alt={currentSong.artist} playing={playing} />
+        ) : (
+          <Loader />
+        )}
         <Controls element={this.myRef.current} />
-        <audio ref={this.myRef} src={currentSong.ulr}>
-          Your browser does not support the
-          <code>audio</code> element.
-        </audio>
+        {currentSong && this.setAudio(currentSong.ulr)}
       </div>
     );
   }
