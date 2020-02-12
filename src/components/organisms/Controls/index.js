@@ -39,11 +39,15 @@ class Controls extends Component {
   componentDidUpdate(prevProps) {
     const { currentTrack } = this.props.track;
     const { data } = this.props.artists;
+    const { percentage } = this.props.controls;
     if (currentTrack !== prevProps.track.currentTrack) {
       this.props.setCurrentSong(data[currentTrack]);
       setTimeout(() => {
         this.onPlay();
       }, 50);
+    }
+    if (percentage === 100) {
+      this.onPause()
     }
   }
 
