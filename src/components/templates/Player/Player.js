@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PlayerWidget from '../../organisms/PlayerWidget/PlayerWidget';
+import PlayerWidget from '../../organisms/PlayerWidget';
 import AudioWidget from '../../organisms/InfoWidget';
 import { getArtistData } from '../../../store/actions/artistActions';
 import Loader from '../../atoms/Loader';

@@ -15,7 +15,6 @@ import Time from '../../atoms/Time';
 class AudioWidget extends Component {
   constructor(props) {
     super(props);
-    this.progressRef = React.createRef();
   }
 
   componentDidUpdate(prevProps) {
@@ -27,8 +26,19 @@ class AudioWidget extends Component {
     }
   }
 
-  OnBarClick(ref) {
-    getWidth(ref, value => this.props.setBarPosition(value));
+  async OnBarClick(ref) {
+    await this.trackTab();
+    setTimeout(() => {
+      getWidth(ref, value => this.props.setBarPosition(value));
+    }, 50);
+    
+  }
+
+  trackTab() {
+    const { ref } = this.props.reference
+    const { percentage } = this.props.controls;
+    const val = parseInt(percentage * ref.duration / 100, 10)
+    ref.currentTime = val
   }
 
   render() {

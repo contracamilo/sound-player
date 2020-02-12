@@ -4,6 +4,7 @@ import Loader from '../../atoms/Loader';
 import Controls from '../Controls';
 import AlbumImage from '../../atoms/AlbumImage';
 import { setCurrentSong } from '../../../store/actions/controlActions';
+import { setRef } from '../../../store/actions/refActions';
 
 /**
  * React Class that renders the artist info elements and manage state and Logic for the music player.
@@ -16,9 +17,20 @@ class PlayerWidget extends Component {
     this.myRef = React.createRef();
   }
 
+  componentDidMount(){
+    this.props.setRef(this.myRef.current || null);
+  }
+
+  componentDidUpdate(prevProps){
+    const { setRef, reference } = this.props;
+    if(reference.tag !== prevProps.reference.tag){
+      setRef(this.myRef.current || null);
+    }
+  }
+
   setAudio(url) {
     return (
-      <audio ref={this.myRef} src={url}>
+      <audio ref={this.myRef || null} src={url}>
         Your browser does not support the
         <code>audio</code> element.
       </audio>
@@ -42,7 +54,7 @@ class PlayerWidget extends Component {
             <span>...Loading</span>
           </>
         )}
-        <Controls element={this.myRef.current} />
+        <Controls element={this.myRef.current || null} />
         {currentSong && this.setAudio(currentSong.ulr)}
       </div>
     );
@@ -53,4 +65,4 @@ const mapStateToProps = reducer => ({
   ...reducer,
 });
 
-export default connect(mapStateToProps, { setCurrentSong })(PlayerWidget);
+export default connect(mapStateToProps, { setCurrentSong, setRef })(PlayerWidget);
